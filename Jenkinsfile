@@ -96,7 +96,7 @@ pipeline{
             steps{
                 echo "====++++executing Push Container++++===="
                 echo "Workspace is: $WORKSPACE"
-                dir("$WORKSPACE/azure_vote"){
+                dir("$WORKSPACE/azure-vote"){
                     script{
                         sh "ls -lah"
                         docker.withRegistry("https://index.docker.io/v1", "docker"){
