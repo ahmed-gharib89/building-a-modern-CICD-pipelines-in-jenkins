@@ -92,6 +92,31 @@ pipeline{
         
             }
         }
+        stage("Push Container"){
+            steps{
+                echo "====++++executing Push Container++++===="
+                echo "Workspace is: $WORKSPACE"
+                dir("$WORKSPACE/azure_vote"){
+                    script{
+                        sh "ls -lah"
+                        docker.withRegistry("docker.io", "docker"){
+                            def image = docker.build("agharib/azure-vote-front:latest")
+                            image.push()
+                        }
+                    }
+
+                }
+            }
+            post{
+                success{
+                    echo "====++++Push Container executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Push Container execution failed++++===="
+                }
+        
+            }
+        }
     }
     post{
         success{
