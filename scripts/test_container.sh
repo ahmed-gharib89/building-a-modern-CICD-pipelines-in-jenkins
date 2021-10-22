@@ -6,7 +6,7 @@ until [ "$started" = true ] || [[ ( "$count" == 3 ) ]]; do
   count=$((count+1))
   echo "[$STAGE_NAME] Starting container [Attempt: $count]"
 
-  testStart=$(curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:8000)
+  testStart=$(curl --write-out '%{http_code}' --silent --output /dev/null http://172.17.0.1:8000)
   echo "$testStart"
 
   if [[ ( "$testStart" == 200 ) ]]; then
