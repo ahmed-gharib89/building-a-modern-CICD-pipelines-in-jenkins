@@ -9,9 +9,6 @@ pipeline{
                 echo "git branch: ${GIT_BRANCH}"
             }
             post{
-                always{
-                    echo "========always========"
-                }
                 success{
                     echo "========Verify Branch executed successfully========"
                 }
@@ -32,9 +29,6 @@ pipeline{
                 '''
             }
             post{
-                always{
-                    echo "====++++always++++===="
-                }
                 success{
                     echo "====++++DOcker Build executed successfully++++===="
                 }
@@ -46,9 +40,6 @@ pipeline{
         }
     }
     post{
-        always{
-            echo "========always========"
-        }
         success{
             echo "========pipeline executed successfully ========"
         }
