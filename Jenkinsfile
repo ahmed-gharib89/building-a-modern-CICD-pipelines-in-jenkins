@@ -43,7 +43,7 @@ pipeline{
                 echo "====++++executing Start test app++++===="
                 sh """
                     docker-compose up -d
-                    docker
+                    docker-compose ps
                     chmod +x ./scripts/test_container.sh
                     ./scripts/test_container.sh
                 """
