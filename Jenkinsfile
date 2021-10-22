@@ -38,6 +38,55 @@ pipeline{
         
             }
         }
+        stage("Start test app"){
+            steps{
+                echo "====++++executing Start test app++++===="
+                sh """
+                    docker-compose up
+                    chmod +x ./scripts/test_container.sh
+                    ./scripts/test_container.sh
+                """
+
+            }
+            post{
+                success{
+                    echo "====++++Start test app executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Start test app execution failed++++===="
+                }
+        
+            }
+        }
+        stage("Run test"){
+            steps{
+                echo "====++++executing Run test++++===="
+            }
+            post{
+                success{
+                    echo "====++++Run test executed successfully++++===="
+                }
+                failure{
+                    echo "====++++Run test execution failed++++===="
+                }
+        
+            }
+        }
+        stage("End test"){
+            steps{
+                echo "====++++executing End test++++===="
+                sh "docker-compose down"
+            }
+            post{
+                success{
+                    echo "====++++End test executed successfully++++===="
+                }
+                failure{
+                    echo "====++++End test execution failed++++===="
+                }
+        
+            }
+        }
     }
     post{
         success{
