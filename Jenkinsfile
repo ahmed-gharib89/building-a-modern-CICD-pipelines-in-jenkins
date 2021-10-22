@@ -20,6 +20,30 @@ pipeline{
                 }
             }
         }
+        stage("DOcker Build"){
+            steps{
+                echo "====++++executing DOcker Build++++===="
+                sh "docker images -a"
+                sh '''
+                    cd azure-vote
+                    docker build -t azure-vote .
+                    docker images -a
+                    cd ..
+                '''
+            }
+            post{
+                always{
+                    echo "====++++always++++===="
+                }
+                success{
+                    echo "====++++DOcker Build executed successfully++++===="
+                }
+                failure{
+                    echo "====++++DOcker Build execution failed++++===="
+                }
+        
+            }
+        }
     }
     post{
         always{
