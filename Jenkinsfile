@@ -61,6 +61,10 @@ pipeline{
         stage("Run test"){
             steps{
                 echo "====++++executing Run test++++===="
+                sh """
+                    pip3 install pytest
+                    pytest ./tests/test_sanple.py
+                """
             }
             post{
                 success{
