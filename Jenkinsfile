@@ -99,7 +99,7 @@ pipeline{
                 dir("$WORKSPACE/azure_vote"){
                     script{
                         sh "ls -lah"
-                        docker.withRegistry("docker.io", "docker"){
+                        docker.withRegistry("https://index.docker.io/v1", "docker"){
                             def image = docker.build("agharib/azure-vote-front:latest")
                             image.push()
                         }
