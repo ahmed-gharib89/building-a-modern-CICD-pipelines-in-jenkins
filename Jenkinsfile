@@ -63,7 +63,7 @@ pipeline{
                 echo "====++++executing Run test++++===="
                 sh """
                     pip3 install pytest
-                    pytest ./tests/test_sanple.py
+                    pytest ./tests/test_sample.py
                 """
             }
             post{
